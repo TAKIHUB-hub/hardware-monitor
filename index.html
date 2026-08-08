@@ -132,8 +132,8 @@
     <style>
         ul li { display: inline-block; margin: 10px 40px; }
     </style>
-    <div><a href="web.html"><img src="lg2.png" width="400" height="150" alt="Logo" style="display: block; margin: 0 auto;"></a></م>
-   
+    <a href="web.html"><img src="lg2.png" width="400" height="150" alt="Logo" style="display: block; margin: 0 auto;"></a>
+    
     <li style="display: block; margin-top: 20px;">
         <form action="https://duckduckgo.com/" method="get" target="_blank" onsubmit="
             let hidden = document.createElement('input');
@@ -203,9 +203,11 @@
 
 <!-- ==================== Comprehensive Database & Logic ==================== -->
 <script>
-
+    // Huge database assigning a performance score to every single component.
+    // Scores are approximate synthetic benchmark averages (higher is better).
     const hardwareScores = {
-
+        // --- GPUs ---
+        // NVIDIA RTX 50 Series (Estimated)
         "NVIDIA GeForce RTX 5090": 46000, 
         "NVIDIA GeForce RTX 5090 Laptop": 32000, 
         "NVIDIA GeForce RTX 5080": 35000, 
@@ -342,9 +344,10 @@
         "AMD Ryzen 7 2700X": 17000, "AMD Ryzen 5 2600X": 14000, "AMD Ryzen 5 2600": 13500, "AMD Ryzen 3 2200G": 6500, "AMD Ryzen 5 1600": 12000
     };
 
+    // Populate Datalists based on the keys in our huge dictionary
     const allHardware = Object.keys(hardwareScores);
     
-
+    // We separate GPUs and CPUs loosely by checking the name
     const gpuDatalist = document.getElementById('all-gpus-list');
     const cpuDatalist = document.getElementById('all-cpus-list');
 
@@ -352,7 +355,7 @@
         let option = document.createElement('option');
         option.value = item;
         
-    .
+        // Basic filter: If it has Core, Ryzen, or Threadripper, it's a CPU. Else, GPU.
         if (item.includes("Core") || item.includes("Ryzen") || item.includes("Threadripper")) {
             cpuDatalist.appendChild(option);
         } else {
@@ -360,7 +363,7 @@
         }
     });
 
-
+    // Comparison Logic
     const compareButtons = document.querySelectorAll('.compare-btn');
 
     compareButtons.forEach(button => {
@@ -385,6 +388,7 @@
                 return;
             }
 
+            // Calculate percentage difference
             let percentageDiff = 0;
             let verdictText = "";
 
@@ -398,7 +402,7 @@
                 verdictText = `${item1Name} and ${item2Name} perform exactly the same.`;
             }
 
- 
+            // Build Output HTML
             let html = `
                 <div class="score-display">
                     <div>
